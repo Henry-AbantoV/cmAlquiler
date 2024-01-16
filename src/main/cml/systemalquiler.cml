@@ -1,0 +1,134 @@
+ContextMap Systemalquiler{
+contains GestionAlquileres
+contains GestionClientes
+contains GestionVehiculos
+contains GestionPagos
+contains Seguridad
+
+//Hacemos las relaciones entre los bounded context
+GestionVehiculos [SK] <-> [SK]GestionAlquileres
+GestionClientes[D]<-[U] GestionAlquileres //Relacion confirmista donde GestionPedidos se adopta se acuerdo a la GestionClientes
+GestionPagos[D,ACL]<-[U] GestionAlquileres //Relacion ACL donde GestionPedidos(dominante) y GestionPagos(dependiente)
+GestionAlquileres[D]<-[U,OHS]GestionClientes
+}
+//Identificamos el dominio y subdominios en el sistema ecommerce
+Domain Systemalquiler{
+//type CORE DOMAIN
+Subdomain CatalogoVehiculos{
+type CORE_DOMAIN
+domainVisionStatement="Descripcion del catalogo de disponibles para alquilar"
+}
+Subdomain ReservaVehiculos{
+type CORE_DOMAIN
+domainVisionStatement="Reserva de vehiculos disponibles para alquilar"
+}
+Subdomain PreciosAlquiler{
+type CORE_DOMAIN
+domainVisionStatement="Contiene los precios por cada alquiler de vehiculo"
+}
+
+Subdomain AutorizacionPagos{
+type CORE_DOMAIN
+domainVisionStatement="Autorizacion de pagos por el alquiler"
+}
+Subdomain Devoluciones{
+type CORE_DOMAIN
+domainVisionStatement="Reembolsos"
+}
+//type SUPPORT DOMAIN
+Subdomain CuentaCliente{
+type SUPPORTING_DOMAIN
+domainVisionStatement="Consiste en el registro e historial de
+cuentas de los clientes"
+}
+
+Subdomain PerfilCliente{
+type SUPPORTING_DOMAIN
+domainVisionStatement="Es el historial de los perfiles de
+nuestros clientes"
+}
+Subdomain SeguimientoAlquileres{
+type SUPPORTING_DOMAIN
+domainVisionStatement="Consiste en el seguimiento de alquileres de vehiculos"
+}
+
+Subdomain CreacionPromociones{
+type SUPPORTING_DOMAIN
+domainVisionStatement="Es crear contenido atractivo para el
+marketing"
+}
+
+//Type GENERIC
+Subdomain AutorizacionCliente{
+type SUPPORTING_DOMAIN
+domainVisionStatement="Consiste en la autorizacion de login al
+sistema de alquiler"
+}
+Subdomain GenerarFacturas{
+type GENERIC_SUBDOMAIN
+domainVisionStatement="Es generar la factura por el alquiler"
+}
+
+}
+//Definimos todos los bounded context del sistema ecommerce
+BoundedContext GestionAlquileres implements CatalogoVehiculos,
+PreciosAlquiler{
+Module Alquiler{
+Aggregate Alquiler{// Se definen las entidades del contexto
+Entity Alquiler
+// Se definen los atributos de la entidad
+ValueObject precio
+ValueObject categoria
+ValueObject descripcion
+ValueObject imagen
+}
+}
+}
+
+BoundedContext GestionPagos implements
+AutorizacionPagos,Devoluciones{
+Module Pago{
+Aggregate Pago{
+Entity Pago
+ValueObject idPago
+ValueObject fechaPago
+ValueObject metodoPago
+ValueObject monto
+ValueObject descuento
+}
+}
+}
+BoundedContext GestionClientes implements CuentaCliente,
+AutorizacionCliente, PerfilCliente {
+Module Cliente{
+Aggregate Cliente{
+Entity PerfilUsuario
+ValueObject idUsuario
+ValueObject nombres
+ValueObject apellidos
+ValueObject correo
+ValueObject ubicacion
+}
+}
+}
+
+BoundedContext GestionVehiculos implements CatalogoVehiculos {
+Module Vehiculo{
+Aggregate Vehiculo{
+Entity Vehiculo
+ValueObject Marca
+ValueObject anio
+
+}
+}
+}
+BoundedContext Seguridad implements AutorizacionCliente, AutorizacionPagos {
+Module Seguridad{
+Aggregate Seguridad{
+Entity login
+ValueObject usuario
+ValueObject contrasenia
+
+}
+}
+}
