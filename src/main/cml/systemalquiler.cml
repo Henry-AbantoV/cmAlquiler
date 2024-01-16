@@ -9,9 +9,9 @@ contains Seguridad
 GestionVehiculos [SK] <-> [SK]GestionAlquileres
 GestionClientes[D]<-[U] GestionAlquileres //Relacion confirmista donde GestionPedidos se adopta se acuerdo a la GestionClientes
 GestionPagos[D,ACL]<-[U] GestionAlquileres //Relacion ACL donde GestionPedidos(dominante) y GestionPagos(dependiente)
-GestionAlquileres[D]<-[U,OHS]GestionClientes
-GestionAlquileres[D]<-[U]Seguridad
-GestionClientes[D]<-[U]Seguridad
+GestionAlquileres[D]<-[U]GestionClientes  //Customer Supplier
+GestionAlquileres[D]<-[U,OHS]Seguridad  //OHS
+GestionClientes[D]<-[U,OHS]Seguridad
 }
 //Identificamos el dominio y subdominios en el sistema ecommerce
 Domain Systemalquiler{
@@ -59,6 +59,11 @@ type SUPPORTING_DOMAIN
 domainVisionStatement="Es crear contenido atractivo para el
 marketing"
 }
+Subdomain HistorialServicioVeh{
+type SUPPORTING_DOMAIN
+domainVisionStatement="Contiene el historial de recorrido del vehiculo asi como su mantenimiento"
+}
+
 
 //Type GENERIC
 Subdomain AutorizacionCliente{
@@ -74,7 +79,7 @@ domainVisionStatement="Es generar la factura por el alquiler"
 }
 //Definimos todos los bounded context del sistema ecommerce
 BoundedContext GestionAlquileres implements CatalogoVehiculos,
-PreciosAlquiler{
+PreciosAlquiler,ReservaVehiculos,CreacionPromociones{
 Module Alquiler{
 Aggregate Alquiler{// Se definen las entidades del contexto
 Entity Alquiler
@@ -88,11 +93,10 @@ ValueObject imagen
 }
 
 BoundedContext GestionPagos implements
-AutorizacionPagos,Devoluciones{
+AutorizacionPagos,Devoluciones,GenerarFacturas{
 Module Pago{
 Aggregate Pago{
 Entity Pago
-ValueObject idPago
 ValueObject fechaPago
 ValueObject metodoPago
 ValueObject monto
@@ -105,7 +109,6 @@ AutorizacionCliente, PerfilCliente {
 Module Cliente{
 Aggregate Cliente{
 Entity PerfilUsuario
-ValueObject idUsuario
 ValueObject nombres
 ValueObject apellidos
 ValueObject correo
@@ -114,7 +117,7 @@ ValueObject ubicacion
 }
 }
 
-BoundedContext GestionVehiculos implements CatalogoVehiculos {
+BoundedContext GestionVehiculos implements CatalogoVehiculos, HistorialServicioVeh {
 Module Vehiculo{
 Aggregate Vehiculo{
 Entity Vehiculo

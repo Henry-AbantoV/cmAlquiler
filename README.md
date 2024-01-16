@@ -1,1 +1,24 @@
 # cmAlquiler
+Identificamos los bounded context
+contains GestionAlquileres
+contains GestionClientes
+contains GestionVehiculos
+contains GestionPagos
+contains Seguridad
+
+CORE DOMAIN
+CatalogoVehiculos
+ReservaVehiculos
+PreciosAlquiler
+AutorizacionPagos
+Devoluciones
+
+SUPPORT DOMAIN
+CuentaCliente
+PerfilCliente
+SeguimientoAlquileres
+CreacionPromociones
+
+GENERIC
+AutorizacionCliente
+GenerarFacturas
