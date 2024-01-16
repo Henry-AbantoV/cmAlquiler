@@ -13,7 +13,7 @@ GestionAlquileres[D]<-[U]GestionClientes  //Customer Supplier
 GestionPagos[D]<-[U,OHS]Seguridad  //OHS
 GestionClientes[D]<-[U,OHS]Seguridad
 }
-//Identificamos el dominio y subdominios
+//Identificamos el dominio y subdominios en el sistema ecommerce
 Domain Systemalquiler{
 //type CORE DOMAIN
 Subdomain CatalogoVehiculos{
@@ -77,7 +77,7 @@ domainVisionStatement="Es generar la factura por el alquiler"
 }
 
 }
-//Definimos todos los bounded context del sistema ecommerce
+//Definimos todos los bounded context 
 BoundedContext GestionAlquileres implements CatalogoVehiculos,
 PreciosAlquiler,ReservaVehiculos,CreacionPromociones{
 Module Alquiler{
