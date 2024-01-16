@@ -6,7 +6,7 @@ contains GestionPagos
 contains Seguridad
 
 //Hacemos las relaciones entre los bounded context
-GestionVehiculos [SK] <-> [SK]GestionAlquileres
+GestionAlquileres [SK] <-> [SK]GestionVehiculos
 GestionClientes[D]<-[U] GestionAlquileres //Relacion confirmista donde GestionPedidos se adopta se acuerdo a la GestionClientes
 GestionPagos[D,ACL]<-[U] GestionAlquileres //Relacion ACL donde GestionPedidos(dominante) y GestionPagos(dependiente)
 GestionAlquileres[D]<-[U]GestionClientes  //Customer Supplier
@@ -18,7 +18,7 @@ Domain Systemalquiler{
 //type CORE DOMAIN
 Subdomain CatalogoVehiculos{
 type CORE_DOMAIN
-domainVisionStatement="Descripcion del catalogo de disponibles para alquilar"
+domainVisionStatement="Descripcion del catalogo de vehiculos disponibles para alquilar"
 }
 Subdomain ReservaVehiculos{
 type CORE_DOMAIN

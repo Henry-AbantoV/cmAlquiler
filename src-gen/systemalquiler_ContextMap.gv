@@ -1,10 +1,10 @@
 digraph "ContextMapGraph" {
 graph ["imagepath"="/tmp/GraphvizJava"]
-"GestionAlquileres" ["margin"="0.3","orientation"="156","shape"="egg","fontsize"="16","style"="bold","label"="GestionAlquileres\n","fontname"="sans-serif"]
-"GestionClientes" ["margin"="0.3","orientation"="146","shape"="egg","fontsize"="16","style"="bold","label"="GestionClientes\n","fontname"="sans-serif"]
-"GestionPagos" ["margin"="0.3","orientation"="119","shape"="egg","fontsize"="16","style"="bold","label"="GestionPagos\n","fontname"="sans-serif"]
-"GestionVehiculos" ["margin"="0.3","orientation"="109","shape"="egg","fontsize"="16","style"="bold","label"="GestionVehiculos\n","fontname"="sans-serif"]
-"Seguridad" ["margin"="0.3","orientation"="275","shape"="egg","fontsize"="16","style"="bold","label"="Seguridad\n","fontname"="sans-serif"]
+"GestionAlquileres" ["margin"="0.3","orientation"="42","shape"="egg","fontsize"="16","style"="bold","label"="GestionAlquileres\n","fontname"="sans-serif"]
+"GestionClientes" ["margin"="0.3","orientation"="175","shape"="egg","fontsize"="16","style"="bold","label"="GestionClientes\n","fontname"="sans-serif"]
+"GestionPagos" ["margin"="0.3","orientation"="293","shape"="egg","fontsize"="16","style"="bold","label"="GestionPagos\n","fontname"="sans-serif"]
+"GestionVehiculos" ["margin"="0.3","orientation"="76","shape"="egg","fontsize"="16","style"="bold","label"="GestionVehiculos\n","fontname"="sans-serif"]
+"Seguridad" ["margin"="0.3","orientation"="140","shape"="egg","fontsize"="16","style"="bold","label"="Seguridad\n","fontname"="sans-serif"]
 "GestionAlquileres" -> "GestionClientes" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">D</td></tr>
 </table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
