@@ -10,7 +10,7 @@ GestionVehiculos [SK] <-> [SK]GestionAlquileres
 GestionClientes[D]<-[U] GestionAlquileres //Relacion confirmista donde GestionPedidos se adopta se acuerdo a la GestionClientes
 GestionPagos[D,ACL]<-[U] GestionAlquileres //Relacion ACL donde GestionPedidos(dominante) y GestionPagos(dependiente)
 GestionAlquileres[D]<-[U]GestionClientes  //Customer Supplier
-GestionAlquileres[D]<-[U,OHS]Seguridad  //OHS
+GestionPagos[D]<-[U,OHS]Seguridad  //OHS
 GestionClientes[D]<-[U,OHS]Seguridad
 }
 //Identificamos el dominio y subdominios en el sistema ecommerce
